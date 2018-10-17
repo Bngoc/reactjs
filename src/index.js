@@ -8,7 +8,7 @@ import routes from './routes';
 import {loadCourses} from './actions/courseActions';
 
 import '../styles/styles.css';
-import '../node_modules/bootstrap/dist/css/bootstrap-theme.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
 store.dispatch(loadCourses());
