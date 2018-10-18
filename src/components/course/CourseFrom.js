@@ -11,7 +11,7 @@ const CourseFrom = ({course, allAuthor, onSave, onChange, loading, errors}) => {
                    options={allAuthor} onChange={onChange} error={errors.authorId}/>
       <TextInput name="category" label="Category" value={course.category} onChange={onChange} error={errors.category}/>
       <TextInput name="length" label="Length" value={course.length} onChange={onChange} error={errors.length}/>
-      <input type="submit" disabled={loading} value={loading ? 'Saving...' : 'Save'}/>
+      <input type="submit" disabled={loading} value={loading ? 'Saving...' : 'Save'} onClick={onSave}/>
     </form>
   );
 };
