@@ -6,6 +6,6 @@ const AboutPage = () => {
         Header
       </div>
     );
-}
+};
 
 export default AboutPage;

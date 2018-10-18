@@ -1,0 +1,14 @@
+import React, {PropTypes} from 'react';
+
+class $NAME extends React.Component {
+  render() {
+    return (
+    );
+  }
+}
+
+$NAME .propTypes = {
+  myProp: PropTypes.string.isRequired
+};
+
+export default $NAME;

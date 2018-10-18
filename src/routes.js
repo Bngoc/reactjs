@@ -4,6 +4,7 @@ import App from './components/App';
 import AboutPage from './components/about/AboutPage';
 import HomePage from './components/home/HomePage';
 import CoursesPage from "./components/course/CoursesPage";
+import ManageCoursePage from "./components/course/ManageCoursePage";
 
 
 export default (
@@ -11,5 +12,7 @@ export default (
     <IndexRoute components={HomePage}/>
     <Route path="about" components={AboutPage}/>
     <Route path="courses" components={CoursesPage}/>
+    <Route path="course" components={ManageCoursePage}/>
+    <Route path="course/:id" components={ManageCoursePage}/>
   </Route>
 );
