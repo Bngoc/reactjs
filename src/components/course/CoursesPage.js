@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from "../../actions/courseActions";
-
+import {browserHistory} from "react-router";
 import CoursesList from './CoursesList';
 
 // const onTitleChange = (event) => {
@@ -24,6 +24,7 @@ class CoursesPage extends React.Component {
 
     this.onTitleChangeIn = this.onTitleChangeIn.bind(this);
     this.onClickSaveIn = this.onClickSaveIn.bind(this);
+    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
   }
 
   onTitleChangeIn(event) {
@@ -36,7 +37,11 @@ class CoursesPage extends React.Component {
     // this.props.dispatch(courseActions.createCourse(this.state.course));
     this.props.actions.createCourse(this.state.course);
     // this.props.createCourse(this.state.course);
-    console.log('sssss', this.state.course.title);
+    //console.log('sssss', this.state.course.title);
+  }
+
+  redirectToAddCoursePage(event) {
+    browserHistory.push('/course');
   }
 
   courseRow(courseItems, index) {
@@ -49,6 +54,7 @@ class CoursesPage extends React.Component {
       <div>
         <h1>Courses</h1>
         {/*{this.props.course.map(this.courseRow)}*/}
+        <input type="button" onClick={this.redirectToAddCoursePage} value="AAAAA"/>
         <CoursesList course={course}/>
         {/*<h2>Add Course</h2>*/}
         {/*<input type="text" onChange={this.onTitleChangeIn} value={this.state.course.title}/>*/}
