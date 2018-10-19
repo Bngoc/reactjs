@@ -54,7 +54,7 @@ class CoursesPage extends React.Component {
       <div>
         <h1>Courses</h1>
         {/*{this.props.course.map(this.courseRow)}*/}
-        <input type="button" onClick={this.redirectToAddCoursePage} value="AAAAA"/>
+        <input type="button" onClick={this.redirectToAddCoursePage} value="AAAAA" className="btn btn-primary"/>
         <CoursesList course={course}/>
         {/*<h2>Add Course</h2>*/}
         {/*<input type="text" onChange={this.onTitleChangeIn} value={this.state.course.title}/>*/}

@@ -5,12 +5,11 @@ const SelectInput = ({name, label, onChange, defaultOption, options, value, erro
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
       <div className="field">
-        <select type="text" name={name} className="form-control" onChange={onChange}>
+        <select type="text" name={name} className="form-control" onChange={onChange} value={value}>
           <option value="">{defaultOption}</option>
           {options.map((option) => {
             return <option value={option.value} key={option.value}>{option.text}</option>;
-          })
-          }
+          })}
         </select>
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
