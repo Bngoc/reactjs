@@ -2,7 +2,8 @@ import React, {PropTypes} from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const CourseFrom = ({course, allAuthor, onSave, onChange, loading, errors}) => {
+const CourseFrom = ({course, allAuthor, onSave, onChange, saving, errors}) => {
+
   return (
     <form>
       <h1>Manage Course</h1>
@@ -11,7 +12,7 @@ const CourseFrom = ({course, allAuthor, onSave, onChange, loading, errors}) => {
                    options={allAuthor} onChange={onChange} error={errors.authorId}/>
       <TextInput name="category" label="Category" value={course.category} onChange={onChange} error={errors.category}/>
       <TextInput name="length" label="Length" value={course.length} onChange={onChange} error={errors.length}/>
-      <input type="submit" disabled={loading} value={loading ? 'Saving...' : 'Save'} onClick={onSave}
+      <input type="submit" disabled={saving} value={saving ? 'Saving...' : 'Save'} onClick={onSave}
              className="btn btn-primary"/>
     </form>
   );
@@ -22,7 +23,7 @@ CourseFrom.propTypes = {
   allAuthor: React.PropTypes.array,
   onSave: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  loading: React.PropTypes.bool,
+  saving: React.PropTypes.bool,
   errors: React.PropTypes.object
 };
 

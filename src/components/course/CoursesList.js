@@ -1,8 +1,10 @@
 import React, {PropTypes} from 'react';
 import CoursesListRow from './CoursesListRow';
+import toastr from "toastr";
 
 
 const CoursesList = ({course}) => {
+
   return (
     <table className="table">
       <thead>

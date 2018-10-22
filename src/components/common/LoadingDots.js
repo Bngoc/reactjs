@@ -12,16 +12,17 @@ class LoadingDots extends React.Component {
   // }
 
   componentDidMount() {
+    console.log("componentDidMount ... ");
     let self = this;
-    this.interval = setInterval(() => {
+    this.ItemsInterval = setInterval(() => {
       self.setState({
         frame: this.state.frame + 1
-      }, this.props.interval);
-    });
+      });
+    }, this.props.interval);
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    clearInterval(this.ItemsInterval);
   }
 
   /*componentWillReceiveProps(nextProps) {
@@ -48,6 +49,8 @@ class LoadingDots extends React.Component {
   render() {
     let dots = this.state.frame % (this.props.dots + 1);
     let txtDots = '';
+
+    console.log("render ... ", this.state.frame, dots)
 
     while (dots > 0) {
       txtDots += '.';

@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as courseActions from "../../actions/courseActions";
 import {browserHistory} from "react-router";
 import CoursesList from './CoursesList';
+import toastr from "toastr";
 
 // const onTitleChange = (event) => {
 //   const course = this.state.course;
@@ -46,6 +47,29 @@ class CoursesPage extends React.Component {
 
   courseRow(courseItems, index) {
     return <div key={index}>{courseItems.title}</div>;
+  }
+
+  deleteCourseState(event) {
+    // event.preventDefault();
+    // this.setState({
+    //   saving: true
+    // });
+    // this.props.actions.saveCourses(this.state.course)
+    //   .then(() => this.redirect())
+    //   .catch((err) => {
+    //     toastr.error(err);
+    //     this.setState({
+    //       saving: true
+    //     });
+    //   });
+  }
+
+  redirect() {
+    // this.setState({
+    //   saving: false
+    // });
+    // toastr.success('Course saved');
+    // this.context.router.push('/courses');
   }
 
   render() {
