@@ -17,6 +17,7 @@ class ManageCoursePage extends React.Component {
 
     this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourseState = this.saveCourseState.bind(this);
+    // this.deleteCourseState = this.deleteCourseState.bind(this);
     console.log('constructor', this.props);
   }
 

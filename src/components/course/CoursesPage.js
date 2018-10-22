@@ -26,6 +26,7 @@ class CoursesPage extends React.Component {
     this.onTitleChangeIn = this.onTitleChangeIn.bind(this);
     this.onClickSaveIn = this.onClickSaveIn.bind(this);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    this.deleteCourseStateEvent = this.deleteCourseStateEvent.bind(this);
   }
 
   onTitleChangeIn(event) {
@@ -49,29 +50,29 @@ class CoursesPage extends React.Component {
     return <div key={index}>{courseItems.title}</div>;
   }
 
-  deleteCourseState(event) {
+  deleteCourseStateEvent(event) {
     // event.preventDefault();
     // this.setState({
     //   saving: true
     // });
-    // this.props.actions.saveCourses(this.state.course)
-    //   .then(() => this.redirect())
-    //   .catch((err) => {
-    //     toastr.error(err);
-    //     this.setState({
-    //       saving: true
-    //     });
-    //   });
+    console.log('ffffff', event.target.value);
+    this.props.actions.deleteCourses(this.state.course)
+      .then(() => this.redirect())
+      .catch((err) => {
+        toastr.error(err);
+        this.setState({
+          saving: true
+        });
+      });
   }
 
   redirect() {
-    // this.setState({
-    //   saving: false
-    // });
-    // toastr.success('Course saved');
-    // this.context.router.push('/courses');
+    //   this.setState({
+    //     saving: false
+    //   });
+    toastr.success('Course deleted!');
+    this.context.router.push('/courses');
   }
-
   render() {
     const {course} = this.props;
     return (
@@ -79,7 +80,7 @@ class CoursesPage extends React.Component {
         <h1>Courses</h1>
         {/*{this.props.course.map(this.courseRow)}*/}
         <input type="button" onClick={this.redirectToAddCoursePage} value="AAAAA" className="btn btn-primary"/>
-        <CoursesList course={course}/>
+        <CoursesList course={course} delCourse={this.deleteCourseStateEvent}/>
         {/*<h2>Add Course</h2>*/}
         {/*<input type="text" onChange={this.onTitleChangeIn} value={this.state.course.title}/>*/}
         {/*<input type="submit" value="Save" onClick={this.onClickSaveIn}/>*/}
@@ -93,7 +94,15 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state, OwnProps) => {
+const mapStateToProps = (state, ownProps) => {
+
+  let courseId = ownProps.params.id; // from the path course/:id
+  // let course = {id: "", watchHref: '', title: '', authorId: '', category: '', length: ''};
+  if (courseId && state.courses.length > 0) {
+    // course = getCourseId(state.courses, courseId);
+  }
+  console.log('mapStateToProps - CoursesPage.js', ownProps, courseId);
+
   return {
     course: state.courses
   };
