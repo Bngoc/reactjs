@@ -50,8 +50,6 @@ class LoadingDots extends React.Component {
     let dots = this.state.frame % (this.props.dots + 1);
     let txtDots = '';
 
-    console.log("render ... ", this.state.frame, dots)
-
     while (dots > 0) {
       txtDots += '.';
       dots--;

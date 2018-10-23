@@ -23,6 +23,7 @@ class CoursesPage extends React.Component {
       course: {title: ""}
     };
 
+    // Call es4
     this.onTitleChangeIn = this.onTitleChangeIn.bind(this);
     this.onClickSaveIn = this.onClickSaveIn.bind(this);
     this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
@@ -46,33 +47,34 @@ class CoursesPage extends React.Component {
     browserHistory.push('/course');
   }
 
-  courseRow(courseItems, index) {
-    return <div key={index}>{courseItems.title}</div>;
-  }
+  // courseRow = (courseItems, index) => {
+  //   return <div key={index}>{courseItems.title}</div>;
+  // }
 
   deleteCourseStateEvent(event) {
-    // event.preventDefault();
-    // this.setState({
-    //   saving: true
-    // });
-    console.log('ffffff', event.target.value);
-    this.props.actions.deleteCourses(this.state.course)
-      .then(() => this.redirect())
-      .catch((err) => {
-        toastr.error(err);
-        this.setState({
-          saving: true
+    this.setState({
+      saving: true
+    });
+    const course = this.props.course.filter(itemCourse => itemCourse.id == event.target.value);
+    if (course && course.length > 0) {
+      this.props.actions.deleteCourses(course[0])
+        .then(() => this.notify())
+        .catch((err) => {
+          toastr.error(err);
+          this.setState({
+            saving: true
+          });
         });
-      });
+    }
   }
 
-  redirect() {
-    //   this.setState({
-    //     saving: false
-    //   });
+  notify = () => {
+    this.setState({
+      saving: false
+    });
     toastr.success('Course deleted!');
-    this.context.router.push('/courses');
   }
+
   render() {
     const {course} = this.props;
     return (
@@ -95,7 +97,6 @@ CoursesPage.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-
   let courseId = ownProps.params.id; // from the path course/:id
   // let course = {id: "", watchHref: '', title: '', authorId: '', category: '', length: ''};
   if (courseId && state.courses.length > 0) {
@@ -110,9 +111,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(courseActions, dispatch)
+    // actions: bindActionCreators({...courseActions}, dispatch)
     // createCourse: course => dispatch(courseActions.createCourse(course))
   };
 };
 
 // export default connect(mapStateToProps)(CoursesPage);
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
+
+// ES6
+// stage-2 || "es2015",
+//https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56
