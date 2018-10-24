@@ -1,3 +1,4 @@
+/*eslint no-empty-function: ["error", { "allow": ["functions"] }]*/
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -11,7 +12,7 @@ import toastr from "toastr";
 //   course.title = event.target.value;
 //   this.setState({course: course});
 // };
-//
+
 // const onClickSave = () => {
 //   console.log('sssss', this.state.course);
 // };
@@ -26,8 +27,8 @@ class CoursesPage extends React.Component {
     // Call es4
     this.onTitleChangeIn = this.onTitleChangeIn.bind(this);
     this.onClickSaveIn = this.onClickSaveIn.bind(this);
-    this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
-    this.deleteCourseStateEvent = this.deleteCourseStateEvent.bind(this);
+    // this.redirectToAddCoursePage = this.redirectToAddCoursePage.bind(this);
+    // this.deleteCourseStateEvent = this.deleteCourseStateEvent.bind(this);
   }
 
   onTitleChangeIn(event) {
@@ -43,15 +44,15 @@ class CoursesPage extends React.Component {
     //console.log('sssss', this.state.course.title);
   }
 
-  redirectToAddCoursePage(event) {
+  redirectToAddCoursePage = (event) => {
     browserHistory.push('/course');
-  }
+  };
 
   // courseRow = (courseItems, index) => {
   //   return <div key={index}>{courseItems.title}</div>;
   // }
 
-  deleteCourseStateEvent(event) {
+  deleteCourseStateEvent = (event) => {
     this.setState({
       saving: true
     });
@@ -66,14 +67,14 @@ class CoursesPage extends React.Component {
           });
         });
     }
-  }
+  };
 
   notify = () => {
     this.setState({
       saving: false
     });
     toastr.success('Course deleted!');
-  }
+  };
 
   render() {
     const {course} = this.props;
@@ -102,7 +103,6 @@ const mapStateToProps = (state, ownProps) => {
   if (courseId && state.courses.length > 0) {
     // course = getCourseId(state.courses, courseId);
   }
-  console.log('mapStateToProps - CoursesPage.js', ownProps, courseId);
 
   return {
     course: state.courses
@@ -110,8 +110,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    actions: bindActionCreators(courseActions, dispatch)
-    // actions: bindActionCreators({...courseActions}, dispatch)
+    // actions: bindActionCreators(courseActions, dispatch)
+    actions: bindActionCreators({...courseActions}, dispatch)
     // createCourse: course => dispatch(courseActions.createCourse(course))
   };
 };
