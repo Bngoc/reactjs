@@ -1,4 +1,3 @@
-/*eslint no-empty-function: ["error", { "allow": ["functions"] }]*/
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
