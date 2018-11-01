@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
 import {Link, IndexLink} from 'react-router';
 import LoadingDots from "./LoadingDots";
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-import * as courseActions from "../../actions/courseActions";
+// import {connect} from "react-redux";
+// import {bindActionCreators} from "redux";
+// import * as courseActions from "../../actions/courseActions";
 
 const Header = ({loading, courses}) => {
   return (
