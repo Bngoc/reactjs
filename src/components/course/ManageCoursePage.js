@@ -8,7 +8,7 @@ import toastr from "toastr";
 class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props, context);
-
+    console.log('constructor', this.props);
     this.state = {
       course: Object.assign({}, this.props.course),
       errors: {},
@@ -18,7 +18,6 @@ class ManageCoursePage extends React.Component {
     this.updateCourseState = this.updateCourseState.bind(this);
     this.saveCourseState = this.saveCourseState.bind(this);
     // this.deleteCourseState = this.deleteCourseState.bind(this);
-    console.log('constructor', this.props);
   }
 
   updateCourseState(event) {
@@ -49,6 +48,10 @@ class ManageCoursePage extends React.Component {
     });
     toastr.success('Course saved');
     this.context.router.push('/courses');
+  }
+
+  componentWillMount() {
+    console.log('componentWillMount');
   }
 
   /*
