@@ -12,7 +12,7 @@ const setup = (saving) => {
     }
   };
   let renderer = TestUtils.createRenderer();
-  renderer.render(<CourseFrom {...props}></CourseFrom>);
+  renderer.render(<CourseFrom {...props} />);
   let output = renderer.getRenderOutput();
 
   return {
@@ -38,7 +38,7 @@ describe("CourseFrom via react test utils", () => {
     expect(submitBtn.props.value).toBe('Save');
   });
 
-  it('Save button is labeked "Saving ..." when saving', () => {
+  it('Save button is labeled "Saving ..." when saving', () => {
     const {output} = setup(true);
     const submitBtn = output.props.children[5];
 

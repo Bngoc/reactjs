@@ -4,8 +4,9 @@ import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
 import CourseFrom from "./CourseFrom";
 import toastr from "toastr";
+import {authorsFormatForDropdown} from '../../selectors/seclectors';
 
-class ManageCoursePage extends React.Component {
+export class ManageCoursePage extends React.Component {
   constructor(props, context) {
     super(props, context);
     console.log('constructor', this.props);
@@ -20,15 +21,30 @@ class ManageCoursePage extends React.Component {
     // this.deleteCourseState = this.deleteCourseState.bind(this);
   }
 
-  updateCourseState(event) {
+  updateCourseState = (event) => {
     const field = event.target.name;
     let course = Object.assign({}, this.state.course);
     course[field] = event.target.value;
     return this.setState({course: course});
-  }
+  };
+
+  courseFormIsValid = () => {
+    let formIsVails = true;
+    let errors = {};
+    if (this.state.course.title.length < 5) {
+      errors.title = "Title must be at least 5 characters.";
+      formIsVails = false;
+    }
+
+    this.setState({errors: errors});
+    return formIsVails;
+  };
 
   saveCourseState(event) {
     event.preventDefault();
+    if (!this.courseFormIsValid()) {
+      return;
+    }
     this.setState({
       saving: true
     });
@@ -148,16 +164,9 @@ const mapStateToProps = (state, ownProps) => {
     course = getCourseId(state.courses, courseId);
   }
 
-  const authorsFormatForDropdown = state.authors.map(author => {
-    return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName
-    };
-  });
-
   return {
     course: course,
-    authors: authorsFormatForDropdown
+    authors: authorsFormatForDropdown(state.authors)
   };
 };
 

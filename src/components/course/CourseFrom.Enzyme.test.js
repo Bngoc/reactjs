@@ -12,7 +12,7 @@ const setup = (saving) => {
     onChange: () => {
     }
   };
-  return shallow(<CourseFrom {...props}></CourseFrom>);
+  return shallow(<CourseFrom {...props} />);
 };
 
 describe("CourseFrom via react test Enzyme!", () => {
